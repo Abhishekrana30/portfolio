@@ -35,27 +35,38 @@ body.is-loading{overflow:hidden;height:100vh;}
   position:fixed;inset:0;z-index:999;
   background:var(--bg);
   display:flex;align-items:center;justify-content:center;
+  overflow-y:auto;
   transition:opacity .6s ease, visibility .6s ease;
 }
 .preloader.preloader-hide{opacity:0;visibility:hidden;pointer-events:none;}
 .preloader-inner{
+  position:relative;
   text-align:center;
   padding:24px;
   max-width:560px;
-  position:relative;
+  width:100%;
+  min-height:340px;
+}
+
+/* Shared stacking for all preloader phases: each sits absolutely on top of
+   the others so hidden phases never take up layout space. */
+.preloader-phase{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .4s ease, transform .4s ease;
+}
+.preloader-phase.phase-show{
+  opacity:1;
+  visibility:visible;
 }
 
 /* Phase 1: percentage counter */
-.preloader-counter-wrap{
-  transition:opacity .5s ease, transform .5s ease;
-}
-.preloader-counter-wrap.counter-hide{
-  opacity:0;
-  transform:translateY(-14px) scale(0.94);
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-}
 .preloader-counter{
   font-family:var(--font-display);
   font-weight:700;
@@ -89,24 +100,6 @@ body.is-loading{overflow:hidden;height:100vh;}
 }
 
 /* Phase 2: "Hi, I am Abhishek Rana." intro line */
-.preloader-hi{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .4s ease;
-}
-.preloader-hi.hi-show{
-  opacity:1;
-  visibility:visible;
-}
-.preloader-hi.hi-hide{
-  opacity:0;
-  visibility:hidden;
-}
 .preloader-hi-line{
   font-family:var(--font-display);
   font-weight:700;
@@ -116,25 +109,15 @@ body.is-loading{overflow:hidden;height:100vh;}
   color:var(--white);
   margin:0;
   padding:0 24px;
-  opacity:0;
-  transform:translateY(14px);
-  animation:fadeUp .55s ease forwards;
-  animation-delay:0.15s;
 }
 .preloader-hi-name{
-  color:var(--accent);
+  background:linear-gradient(180deg, #f5f5f3 0%, #8a8a92 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 /* Phase 3: name badge + big role headline reveal */
-.preloader-reveal{
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .3s ease;
-}
-.preloader-reveal.reveal-show{
-  opacity:1;
-  visibility:visible;
-}
 .preloader-badge{
   display:inline-block;
   font-family:var(--font-mono);
@@ -146,10 +129,6 @@ body.is-loading{overflow:hidden;height:100vh;}
   padding:9px 22px;
   border-radius:999px;
   margin:0 0 30px;
-  opacity:0;
-  transform:translateY(10px);
-  animation:fadeUp .55s ease forwards;
-  animation-delay:0.1s;
 }
 .preloader-role{
   font-family:var(--font-display);
@@ -162,10 +141,6 @@ body.is-loading{overflow:hidden;height:100vh;}
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-  opacity:0;
-  transform:translateY(16px);
-  animation:fadeUp .6s ease forwards;
-  animation-delay:0.35s;
 }
 .preloader-desc{
   color:var(--text-dim);
@@ -173,20 +148,8 @@ body.is-loading{overflow:hidden;height:100vh;}
   line-height:1.7;
   max-width:460px;
   margin:0 auto 34px;
-  opacity:0;
-  animation:fadeUp .6s ease forwards;
-  animation-delay:0.65s;
 }
-.preloader-btn{
-  opacity:0;
-  transform:translateY(10px);
-  animation:fadeUp .6s ease forwards;
-  animation-delay:0.9s;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:translateY(0);}
-}
+.preloader-btn{}
 
 /* ---------- NAV ---------- */
 .nav{

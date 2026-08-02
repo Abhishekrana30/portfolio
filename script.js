@@ -25,14 +25,13 @@
       percentEl.textContent = 100;
       barFill.style.width = '100%';
       setTimeout(() => {
-        counterWrap.classList.add('counter-hide');
-        hiPhase.classList.add('hi-show');
+        counterWrap.classList.remove('phase-show');
+        hiPhase.classList.add('phase-show');
       }, 250);
 
       setTimeout(() => {
-        hiPhase.classList.remove('hi-show');
-        hiPhase.classList.add('hi-hide');
-        reveal.classList.add('reveal-show');
+        hiPhase.classList.remove('phase-show');
+        reveal.classList.add('phase-show');
       }, 250 + 1500);
     }
   }
