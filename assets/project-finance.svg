@@ -1,0 +1,36 @@
+<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgFin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1410"/>
+      <stop offset="100%" stop-color="#0f0c09"/>
+    </linearGradient>
+    <linearGradient id="barFin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2a13a"/>
+      <stop offset="100%" stop-color="#f2a13a" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#bgFin)"/>
+  <!-- bars -->
+  <g>
+    <rect x="70" y="150" width="26" height="55" rx="4" fill="url(#barFin)"/>
+    <rect x="110" y="120" width="26" height="85" rx="4" fill="url(#barFin)"/>
+    <rect x="150" y="95" width="26" height="110" rx="4" fill="url(#barFin)"/>
+    <rect x="190" y="135" width="26" height="70" rx="4" fill="url(#barFin)"/>
+    <rect x="230" y="75" width="26" height="130" rx="4" fill="url(#barFin)"/>
+    <rect x="270" y="110" width="26" height="95" rx="4" fill="url(#barFin)"/>
+  </g>
+  <!-- trend line -->
+  <polyline points="83,140 123,110 163,85 203,125 243,65 283,100" fill="none" stroke="#f5f5f3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <g fill="#f5f5f3">
+    <circle cx="83" cy="140" r="3.5"/><circle cx="123" cy="110" r="3.5"/><circle cx="163" cy="85" r="3.5"/>
+    <circle cx="203" cy="125" r="3.5"/><circle cx="243" cy="65" r="3.5"/><circle cx="283" cy="100" r="3.5"/>
+  </g>
+  <!-- chat / query bubble -->
+  <g transform="translate(285,45)">
+    <rect x="-40" y="-22" width="80" height="40" rx="12" fill="rgba(242,161,58,0.12)" stroke="#f2a13a" stroke-width="1.5"/>
+    <path d="M-8,18 L-14,30 L2,18 Z" fill="rgba(242,161,58,0.12)" stroke="#f2a13a" stroke-width="1.5"/>
+    <circle cx="-18" cy="-2" r="2.5" fill="#f2a13a"/>
+    <circle cx="0" cy="-2" r="2.5" fill="#f2a13a"/>
+    <circle cx="18" cy="-2" r="2.5" fill="#f2a13a"/>
+  </g>
+</svg>

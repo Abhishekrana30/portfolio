@@ -1,0 +1,35 @@
+<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGamer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1410"/>
+      <stop offset="100%" stop-color="#0f0c09"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#bgGamer)"/>
+  <!-- webcam frame -->
+  <rect x="120" y="55" width="160" height="120" rx="14" fill="rgba(242,161,58,0.05)" stroke="rgba(242,161,58,0.4)" stroke-width="2"/>
+  <!-- face -->
+  <circle cx="200" cy="110" r="34" fill="none" stroke="#f2a13a" stroke-width="2.5"/>
+  <circle cx="188" cy="102" r="3" fill="#f2a13a"/>
+  <circle cx="212" cy="102" r="3" fill="#f2a13a"/>
+  <path d="M186,124 Q200,114 214,124" stroke="#f2a13a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- scan corners -->
+  <g stroke="#f2a13a" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M132,67 h16 M132,67 v16"/>
+    <path d="M268,67 h-16 M268,67 v16"/>
+    <path d="M132,163 h16 M132,163 v-16"/>
+    <path d="M268,163 h-16 M268,163 v-16"/>
+  </g>
+  <!-- camera stand -->
+  <line x1="200" y1="175" x2="200" y2="195" stroke="rgba(242,161,58,0.4)" stroke-width="3"/>
+  <line x1="176" y1="195" x2="224" y2="195" stroke="rgba(242,161,58,0.4)" stroke-width="3" stroke-linecap="round"/>
+  <!-- frustration score waveform -->
+  <polyline points="55,205 85,195 105,215 130,180 150,205 175,190" fill="none" stroke="url(#lineGym2)" stroke-width="2.5" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="lineGym2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f2a13a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f2a13a"/>
+    </linearGradient>
+  </defs>
+  <polyline points="225,190 250,205 270,180 295,215 315,195 345,205" fill="none" stroke="#f2a13a" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+</svg>
