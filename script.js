@@ -79,3 +79,21 @@ function setActiveLink() {
 
 window.addEventListener('scroll', setActiveLink);
 setActiveLink();
+
+// Scroll reveal: fade + slide up elements as they enter the viewport
+const revealTargets = document.querySelectorAll(
+  '.skill-card, .project-card, .extra-box, .about-card, .edu-card, .section-tag, .section-title'
+);
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+revealTargets.forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.08 + 's';
+  revealObserver.observe(el);
+});
