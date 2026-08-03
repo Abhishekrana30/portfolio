@@ -82,7 +82,7 @@ setActiveLink();
 
 // Scroll reveal: fade + slide up elements as they enter the viewport
 const revealTargets = document.querySelectorAll(
-  '.skill-card, .project-card, .extra-box, .about-card, .edu-card, .section-tag, .section-title'
+  '.skill-card, .project-card, .about-card, .edu-card, .section-tag, .section-title'
 );
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -97,3 +97,78 @@ revealTargets.forEach((el, i) => {
   el.style.transitionDelay = (i % 4) * 0.08 + 's';
   revealObserver.observe(el);
 });
+
+// Skill/project tag stagger: each tag in a card fades in slightly after the previous
+document.querySelectorAll('.tags').forEach(group => {
+  group.querySelectorAll('.tag').forEach((tag, i) => {
+    tag.style.transitionDelay = (i * 0.06) + 's';
+  });
+});
+const tagObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      tagObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.tags').forEach(group => tagObserver.observe(group));
+
+// Typing effect on the hero role line
+(function typeHeroRole(){
+  const el = document.querySelector('.hero-role');
+  if (!el) return;
+  const text = el.textContent;
+  el.textContent = '';
+  el.classList.add('typing');
+  let i = 0;
+  function type(){
+    if (i <= text.length) {
+      el.textContent = text.slice(0, i);
+      i++;
+      setTimeout(type, 55);
+    } else {
+      el.classList.remove('typing');
+      el.classList.add('typing-done');
+    }
+  }
+  // Start after the preloader has revealed the page
+  setTimeout(type, 900);
+})();
+
+// Cursor spotlight glow that follows the mouse across the hero section
+(function cursorSpotlight(){
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  hero.appendChild(glow);
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    glow.style.left = x + 'px';
+    glow.style.top = y + 'px';
+    glow.style.opacity = '1';
+  });
+  hero.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+  });
+})();
+
+// Magnetic buttons: pill buttons shift slightly toward the cursor on hover
+(function magneticButtons(){
+  const buttons = document.querySelectorAll('.btn-pill');
+  buttons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+})();
